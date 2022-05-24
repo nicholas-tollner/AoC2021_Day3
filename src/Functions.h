@@ -9,7 +9,8 @@
 
 class Functions {
 public:
-    static void stringSplit(std::string line, char delimiter, std::vector<std::string> &vec);
+    static void stringSplit(std::string line, char delimiter, std::vector<std::string>& vec);
+    static std::ifstream& gotoLine(std::ifstream& file, unsigned int skip);
 };
 
 

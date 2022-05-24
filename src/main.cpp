@@ -20,14 +20,21 @@ int main(int argc, char *argv[])
         return 1;
     }
     getline(inFile, line);
-    std::cout << line << std::endl << std::endl;
 
+    // Split string of numbers into vector
     Functions::stringSplit(line, ',', vec);
 
     for (auto it = vec.begin(); it != vec.end(); it++)
     {
         std::cout << *it << " ";
     }
+
+    Functions::gotoLine(inFile, 2);
+
+    getline(inFile, line);
+
+    std::cout << "\n\n" << line << std::endl;
+
 
     inFile.close();
     return 0;
