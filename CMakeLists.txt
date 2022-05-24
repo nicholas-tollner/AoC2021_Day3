@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Project
 project(AoC2021_Day3)
-set(source_files src/main.cpp src/Functions.cpp)
+set(source_files src/main.cpp src/Functions.cpp src/Board.cpp)
 file(GLOB text_files "*.txt")
 
 # Build

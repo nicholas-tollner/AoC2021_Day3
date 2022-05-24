@@ -13,12 +13,15 @@
  * @param delimiter The char to split around
  * @param vec The vector<std::string> to fill with split strings
  */
-void Functions::stringSplit(std::string line, char delimiter, std::vector<std::string>& vec) {
+void Functions::stringSplit(std::string line, char delimiter, std::vector<std::string> &vec) {
     std::stringstream stream(line);
     std::string token;
 
     while (std::getline(stream, token, delimiter)) {
-        vec.push_back(token);
+        if (!token.empty())
+        {
+            vec.push_back(token);
+        }
     }
 }
 
@@ -28,7 +31,7 @@ void Functions::stringSplit(std::string line, char delimiter, std::vector<std::s
  * @param skip The number of lines to skip
  * @return The original file
  */
-std::ifstream& Functions::gotoLine(std::ifstream& file, unsigned int skip) {
+std::ifstream& Functions::gotoLine(std::ifstream &file, unsigned int skip) {
     if (!file)
     {
         std::cout << "File could not be opened" << std::endl;

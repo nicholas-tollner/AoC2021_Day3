@@ -6,12 +6,14 @@
 #include <string>
 #include <vector>
 #include "Functions.h"
+#include "Board.h"
 
 int main(int argc, char *argv[])
 {
     std::string line;
     std::ifstream inFile("src/resources/day_4_input_1.txt");
     std::vector<std::string> vec;
+    std::vector<std::string> boardStrings;
 
     // Check file could be opened
     if (!inFile)
@@ -29,11 +31,32 @@ int main(int argc, char *argv[])
         std::cout << *it << " ";
     }
 
+    std::cout << "\n" << std::endl;
     Functions::gotoLine(inFile, 2);
 
-    getline(inFile, line);
+    while(getline(inFile, line))
+    {
+        if (!line.empty())              // Check if line is empty
+        {
+            boardStrings.push_back(line);
+            if (boardStrings.size() == 5)
+            {
+                std::cout << "Board full" << std::endl;
+                break;
+            }
+        }
+    }
 
-    std::cout << "\n\n" << line << std::endl;
+    for (auto it = boardStrings.begin(); it != boardStrings.end(); it++)
+    {
+        std::cout << *it << std::endl;
+    }
+
+    std::cout <<  "\n";
+
+    Board *board = new Board(boardStrings);
+
+    board->print();
 
 
     inFile.close();

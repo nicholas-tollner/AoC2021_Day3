@@ -16,12 +16,16 @@
      */
 class Board {
 public:
-    Board(std::vector<std::string>& lines);
-    ~Board();
+    explicit Board(std::vector<std::string> &lines);
+
+    static void parseSplit(std::string line, char delimiter, std::array<int, 5> &arr);
+    void print();
+
 
 private:
     std::array<std::array<int, 5>, 5> numbers = {};  // Array of arrays
     std::array<std::array<bool, 5>, 5> marked = {};  // Array of arrays
+    std::array<int, 5> row = {};
 };
 
 #endif //AOC2021_DAY3_BOARD_H
