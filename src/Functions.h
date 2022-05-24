@@ -9,8 +9,7 @@
 
 class Functions {
 public:
-    static std::string* stringSplit(std::string line, const std::string& delimiter);
-    static std::string* stringSplit(std::string line, const char& delimiter);
+    static void stringSplit(std::string line, char delimiter, std::vector<std::string> &vec);
 };
 
 

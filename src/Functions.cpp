@@ -4,26 +4,22 @@
 
 #include <iostream>
 #include <sstream>
+#include <vector>
 #include "Functions.h"
 
 /**
- * Splits a string around a given delimiter. Allocates appropriate memory to accommodate given string.
- * @param line The String to split
+ * Splits a string around a given delimiter into provided vector
+ * @param line The string to split
  * @param delimiter The char to split around
- * @return Pointer to memory containing first split String
+ * @param vec The vector<std::string> to fill with split strings
  */
-std::string *Functions::stringSplit(std::string line, const char &delimiter) {
+void Functions::stringSplit(std::string line, char delimiter, std::vector<std::string> &vec) {
     std::stringstream stream(line);
     std::string token;
 
-    std::string* temp = (std::string*) malloc(line.size() * sizeof(line));
-    std::string* ptr = temp;
-
     while (std::getline(stream, token, delimiter)) {
-        *temp = token;
-        temp++;
+        vec.push_back(token);
     }
-    return ptr;
 }
 
 

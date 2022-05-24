@@ -4,12 +4,14 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "Functions.h"
 
 int main(int argc, char *argv[])
 {
     std::string line;
     std::ifstream inFile("src/resources/day_4_input_1.txt");
+    std::vector<std::string> vec;
 
     // Check file could be opened
     if (!inFile)
@@ -20,9 +22,12 @@ int main(int argc, char *argv[])
     getline(inFile, line);
     std::cout << line << std::endl << std::endl;
 
-    std::string* ptr = Functions::stringSplit(line, ',');
+    Functions::stringSplit(line, ',', vec);
 
-    std::cout << "Current Ptr Value: " << *ptr++ << std::endl;
+    for (auto it = vec.begin(); it != vec.end(); it++)
+    {
+        std::cout << *it << " ";
+    }
 
     inFile.close();
     return 0;
