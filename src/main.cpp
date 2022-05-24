@@ -12,8 +12,12 @@ int main(int argc, char *argv[])
 {
     std::string line;
     std::ifstream inFile("src/resources/day_4_input_1.txt");
+
     std::vector<std::string> vec;
-    std::vector<std::string> boardStrings;
+    std::vector<std::string> strings;
+    std::vector<Board> boards;
+
+    int boardCount = 0;
 
     // Check file could be opened
     if (!inFile)
@@ -25,39 +29,27 @@ int main(int argc, char *argv[])
 
     // Split string of numbers into vector
     Functions::stringSplit(line, ',', vec);
-
-    for (auto it = vec.begin(); it != vec.end(); it++)
-    {
-        std::cout << *it << " ";
-    }
-
-    std::cout << "\n" << std::endl;
     Functions::gotoLine(inFile, 2);
 
     while(getline(inFile, line))
     {
-        if (!line.empty())              // Check if line is empty
+        if (!line.empty())
         {
-            boardStrings.push_back(line);
-            if (boardStrings.size() == 5)
+            strings.push_back(line);
+
+            // When 5 lines have been read, create
+            if (strings.size() == 5)
             {
-                std::cout << "Board full" << std::endl;
-                break;
+                boards.push_back(Board(strings));
+                strings.clear();
             }
         }
     }
 
-    for (auto it = boardStrings.begin(); it != boardStrings.end(); it++)
+    for (int i = 0; i < boards.size(); i++)
     {
-        std::cout << *it << std::endl;
+        boards[i].print();
     }
-
-    std::cout <<  "\n";
-
-    Board *board = new Board(boardStrings);
-
-    board->print();
-
 
     inFile.close();
     return 0;
