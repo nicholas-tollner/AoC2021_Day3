@@ -1,8 +1,8 @@
 //
 // Created by Nickt on 24/05/2022.
 //
-#ifndef AOC2021_DAY3_FUNCTIONS_H
-#define AOC2021_DAY3_FUNCTIONS_H
+#ifndef AOC2021_DAY4_FUNCTIONS_H
+#define AOC2021_DAY4_FUNCTIONS_H
 
 #include <string>
 #include <array>
@@ -15,4 +15,4 @@ public:
 };
 
 
-#endif //AOC2021_DAY3_FUNCTIONS_H
+#endif //AOC2021_DAY4_FUNCTIONS_H

@@ -2,8 +2,8 @@
 // Created by Nickt on 24/05/2022.
 //
 
-#ifndef AOC2021_DAY3_BOARD_H
-#define AOC2021_DAY3_BOARD_H
+#ifndef AOC2021_DAY4_BOARD_H
+#define AOC2021_DAY4_BOARD_H
 
 #include <array>
 #include <vector>
@@ -36,4 +36,4 @@ private:
     bool won = false;
 };
 
-#endif //AOC2021_DAY3_BOARD_H
+#endif //AOC2021_DAY4_BOARD_H
