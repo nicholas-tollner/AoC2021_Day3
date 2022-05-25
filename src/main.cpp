@@ -17,6 +17,8 @@ int main(int argc, char *argv[])
     std::vector<std::string> strings;
     std::vector<Board> boards;
 
+    int count = 1;
+
     // Check file could be opened
     if (!inFile)
     {
@@ -38,8 +40,9 @@ int main(int argc, char *argv[])
             // When 5 lines have been read, add new Board object to boards array
             if (strings.size() == 5)
             {
-                boards.push_back(Board(strings));
+                boards.push_back(Board(strings, count));
                 strings.clear();
+                count++;
             }
         }
     }
@@ -53,7 +56,15 @@ int main(int argc, char *argv[])
         for (int i = 0; i < boards.size(); i++)
         {
             boards[i].checkMatch(num);
-            boards[i].printMatch();
+            if (boards[i].checkBingo(num))
+            {
+                int sum = boards[i].sumUnmatched();
+                std::cout << "Bingo on board: " << i+1 << std::endl;
+                std::cout << "Last called number: " << num << std::endl;
+                std::cout << "Sum of unmatched numbers: " << sum << std::endl;
+                std::cout << "Final score: " << sum * num << std::endl;
+                return 0;
+            }
         }
     }
 
