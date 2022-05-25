@@ -129,16 +129,13 @@ bool Board::checkBingo() {
 
 int Board::sumUnmatched() {
     int sum = 0;
-    std::cout << "Summing: ";
     for (int i = 0; i < marked.size(); i++) {
         for (int j = 0; j < row.size(); j++) {
             if (!marked[i][j]) {
-                std::cout << numbers[i][j] << " ";
                 sum += numbers[i][j];
             }
         }
     }
-    std::cout << "\n";
     return sum;
 }
 
