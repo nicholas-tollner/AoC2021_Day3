@@ -17,6 +17,7 @@ int main(int argc, char *argv[])
     std::vector<std::string> strings;
     std::vector<Board> boards;
 
+    int boardsWon = 0;
     int count = 1;
 
     // Check file could be opened
@@ -55,12 +56,31 @@ int main(int argc, char *argv[])
         // Check if current number matches
         for (int i = 0; i < boards.size(); i++)
         {
-            boards[i].checkMatch(num);
-            if (boards[i].checkBingo(num))
+            if (!boards[i].hasWon()) {
+                boards[i].checkMatch(num);
+            }
+//           Part One Solution
+//            if (boards[i].checkBingo(num))
+//            {
+//                std::cout << "Bingo on board: " << i+1 << std::endl;
+//                std::cout << "Last called number: " << num << std::endl;
+//                int sum = boards[i].sumUnmatched();
+//                std::cout << "Sum of unmatched numbers: " << sum << std::endl;
+//                std::cout << "Final score: " << sum * num << std::endl;
+//                return 0;
+//            }
+            if (!boards[i].hasWon()) {
+                if (boards[i].checkBingo()) {
+                    boardsWon++;
+                    std::cout << "Boards remaining: " << boards.size() - boardsWon << ", Num: " << num << std::endl;
+                }
+            }
+
+            if (boardsWon == boards.size())
             {
-                int sum = boards[i].sumUnmatched();
-                std::cout << "Bingo on board: " << i+1 << std::endl;
+                std::cout << "Last to win: " << boards[i].getBoardNo() << std::endl;
                 std::cout << "Last called number: " << num << std::endl;
+                int sum = boards[i].sumUnmatched();
                 std::cout << "Sum of unmatched numbers: " << sum << std::endl;
                 std::cout << "Final score: " << sum * num << std::endl;
                 return 0;

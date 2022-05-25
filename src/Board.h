@@ -22,14 +22,18 @@ public:
     void checkMatch(unsigned int num);
     void print();
     void printMatch();
-    bool checkBingo(int num);
+    bool checkBingo();
+    bool hasWon();
     int sumUnmatched();
+
+    int getBoardNo();
 
 private:
     std::array<std::array<int, 5>, 5> numbers = {};  // Array of arrays
     std::array<std::array<bool, 5>, 5> marked = {};  // Array of arrays
     std::array<int, 5> row = {};
     int boardNo;
+    bool won = false;
 };
 
 #endif //AOC2021_DAY3_BOARD_H

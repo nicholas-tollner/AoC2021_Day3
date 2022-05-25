@@ -48,7 +48,6 @@ void Board::checkMatch(unsigned int num) {
         for (int j = 0; j < row.size(); j++) {
             if (numbers[i][j] == num) {
                 marked[i][j] = true;
-                //std::cout << num << " matched board " << boardNo << std::endl;
             }
         }
     }
@@ -84,40 +83,42 @@ void Board::printMatch() {
  * Checks for completed rows and returns true if bingo has been achieved
  * @return true If bingo has been achieved, false otherwise
  */
-bool Board::checkBingo(int num) {
+bool Board::checkBingo() {
     std::array<bool, 5> bingo = {};
-    int rowNo = 0;
 
     for (int i = 0; i < 5; i++) {
         for (int pos = 0; pos < row.size(); pos++) {
             // If current position is not marked, move to next row
-            if (!marked[rowNo][pos]) {
-                rowNo++;
-                bingo = {};         // Reset bingo array
+            if (!marked[i][pos]) {
+                bingo = {};
                 break;
             }
             bingo[pos] = true;
 
             if (pos == 4) {
+                won = true;
                 return true;
             }
         }
     }
     // Check columns for bingo
-    for (int i = 0; i < marked.size(); i++) {
+    for (int i = 0; i < 5; i++) {
         // If first element in column is true, check entire column
-        for (int j = 0; j < row.size(); j++) {
-            if (!marked[i][j]) {
-                bingo = {};
+        for (int pos = 0; pos < row.size(); pos++) {
+
+            if(!marked[pos][i])
+            {
                 break;
             }
-            bingo[j] = true;
+            bingo[pos] = true;
 
-            if (j == 4) {
+            if (pos == 4) {
+                won = true;
                 return true;
             }
         }
     }
+    // Check if bingo array is all true
     for (int i = 0; i < bingo.size(); i++) {
         if (!bingo[i]) {
             return false;
@@ -139,6 +140,14 @@ int Board::sumUnmatched() {
     }
     std::cout << "\n";
     return sum;
+}
+
+bool Board::hasWon() {
+    return won;
+}
+
+int Board::getBoardNo() {
+    return boardNo;
 }
 
 
