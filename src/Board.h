@@ -19,8 +19,9 @@ public:
     explicit Board(std::vector<std::string> &lines);
 
     static void parseSplit(std::string line, char delimiter, std::array<int, 5> &arr);
+    void checkMatch(unsigned int num);
     void print();
-
+    void printMatch();
 
 private:
     std::array<std::array<int, 5>, 5> numbers = {};  // Array of arrays

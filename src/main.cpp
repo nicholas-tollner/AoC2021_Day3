@@ -17,8 +17,6 @@ int main(int argc, char *argv[])
     std::vector<std::string> strings;
     std::vector<Board> boards;
 
-    int boardCount = 0;
-
     // Check file could be opened
     if (!inFile)
     {
@@ -37,7 +35,7 @@ int main(int argc, char *argv[])
         {
             strings.push_back(line);
 
-            // When 5 lines have been read, create
+            // When 5 lines have been read, add new Board object to boards array
             if (strings.size() == 5)
             {
                 boards.push_back(Board(strings));
@@ -46,9 +44,17 @@ int main(int argc, char *argv[])
         }
     }
 
-    for (int i = 0; i < boards.size(); i++)
+    // Iterate through vector of strings
+    for (int i = 0; i < vec.size(); i++)
     {
-        boards[i].print();
+        int num = std::stoi(vec[i]);
+
+        // Check if current number matches
+        for (int i = 0; i < boards.size(); i++)
+        {
+            boards[i].checkMatch(num);
+            boards[i].printMatch();
+        }
     }
 
     inFile.close();

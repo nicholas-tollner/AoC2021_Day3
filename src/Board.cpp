@@ -40,6 +40,23 @@ void Board::parseSplit(std::string line, char delimiter, std::array<int, 5> &arr
 }
 
 /**
+ * Checks if a given number is present in the numbers array
+ * Marks corresponding position in marked array if num is present
+ * @param num The number to check for
+ */
+void Board::checkMatch(unsigned int num) {
+    for (int i = 0; i < numbers.size(); i++)
+    {
+        for (int j = 0; j < row.size(); j++)
+        {
+            if (numbers[i][j] == num)
+            {
+                marked[i][j] = true;
+            }
+        }
+    }
+}
+/**
  * Prints out all numbers in Board
  */
 void Board::print() {
@@ -53,3 +70,20 @@ void Board::print() {
     }
     std::cout << "\n";
 }
+
+/**
+ * Prints out all matches in Board
+ */
+void Board::printMatch() {
+    for (int i = 0; i < marked.size(); i++)
+    {
+        for (int j = 0; j < row.size(); j++)
+        {
+            std::cout << marked[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "\n";
+}
+
+
